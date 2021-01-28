@@ -17,7 +17,9 @@ Temps d'execution:
 
 Notre code a été executé sur nos machine personelle, donc à l'aide d'un CPU. 
 
-## Exigence techniques
+## Exigences techniques
+
+Télécharger le script python, il peut être nécessaire de modifier le chemin d'accès des données avant de lancer le script.
 
 Toutes les librairies requises pour le lancement du script sont listées dans le fichier `requirements.txt`
  
