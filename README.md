@@ -10,7 +10,10 @@ Paramètres selectionnées :
  - Paramètre de régularisation : 1
  
 Temps d'execution: 
-- TO DO
+- Nettoyage des données : 645 secondes
+- Vectorisation des données (TFIDF) : 49 secondes
+- Entrainement du modèle de classification : 124 secondes
+- Execution avec des données de test : moins d'une seconde
 
 Notre code a été executé sur nos machine personelle, donc à l'aide d'un CPU. 
 
