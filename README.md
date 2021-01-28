@@ -25,11 +25,11 @@ Toutes les librairies requises pour le lancement du script sont listées dans le
  
  A VOIR:
  
-Pour construire un environement fonctionel sur panda, executer les lignes suivantes :
+Pour construire un environement fonctionel sur conda, executer les lignes suivantes :
  
  ```
-conda create -n AIF python=3.8
-conda activate AIF
+conda create -n Defi python=3.8
+conda activate Defi
 pip install -r requirements.txt 
 jupyter labextension install jupyterlab-plotly@4.12.0
 ```
