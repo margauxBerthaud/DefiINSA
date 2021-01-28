@@ -5,7 +5,9 @@
 Pour notre solution nous avons chosit d'implémenter une vectorisation TDIDF et une classification Linear Support VectorClassification. Une selection des paramètre par validation croisée à été faite au préalable afin de déterminer les paramètres les plus efficace pour notre solution. 
 
 Paramètres selectionnées :
- - TO DO
+ - Norme de penalisation : l2
+ - Fonction de perte : hinge, 
+ - Paramètre de régularisation : 1
  
 Temps d'execution: 
 - TO DO
