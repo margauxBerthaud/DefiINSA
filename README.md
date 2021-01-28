@@ -23,7 +23,7 @@ Télécharger le script python, il peut être nécessaire de modifier le chemin 
 
 Toutes les librairies requises pour le lancement du script sont listées dans le fichier `requirements.txt`
   
-Pour construire un environement fonctionel sur conda, executer les lignes suivantes :
+Pour construire un environement fonctionel sur pandas, executer les lignes suivantes :
  
  ```
 conda create -n Defi python=3.8
