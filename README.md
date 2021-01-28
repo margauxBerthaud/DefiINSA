@@ -31,5 +31,5 @@ Pour construire un environement fonctionel sur conda, executer les lignes suivan
 conda create -n Defi python=3.8
 conda activate Defi
 pip install -r requirements.txt 
-jupyter labextension install jupyterlab-plotly@4.12.0
+python scriptPythonSVC.py
 ```
