@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In this notebook we describe the code use to produce the baseline. 
 
 # # Data and Libraries
 
@@ -75,17 +74,14 @@ fig.update_layout(
 fig.show()
 
 
-# Faut équilibrer classe et genre métier.
 
-# On peut remarquer une grande disparité dans la représentation des catégories.
-
-# In[9]:
+# In[4]:
 
 
 desc_metier=pd.merge(label_string,train_df, on=['Id'])
 
 
-# In[10]:
+# In[5]:
 
 
 vocabulary_size = {metier : len(set(" ".join(desc_metier[desc_metier["0"]==metier]["description"].values).split(" "))) for metier in set(desc_metier["0"].values)}
@@ -115,7 +111,7 @@ fig.show()
 
 # # Cleaning
 
-# In[11]:
+# In[6]:
 
 
 i = 47
@@ -123,7 +119,7 @@ description = train_df.description.values[i]
 print("Original Description : " + description)
 
 
-# In[12]:
+# In[7]:
 
 
 digits_list = digits
@@ -160,7 +156,7 @@ class CleanText:
         return [self.stemmer.stem(token) for token in tokens]
 
 
-# In[13]:
+# In[8]:
 
 
 c=CleanText()
@@ -174,29 +170,28 @@ def apply_all_transformation(description):
     return tokens
 
 
-# In[14]:
+# In[9]:
 
 
-# %load solution/clean_dataframe_2.py
 def clean_df_column(df,column_name, clean_column_name) :
     df[clean_column_name]=[" ".join(apply_all_transformation(x)) for x in tqdm(df[column_name].values)]
 
 
-# In[15]:
+# In[10]:
 
 
 clean_df_column(train_df, "description", "description_cleaned")
 train_df[["description", "description_cleaned"]]
 
 
-# In[16]:
+# In[11]:
 
 
 clean_df_column(test_df, "description", "description_cleaned")
 test_df[["description", "description_cleaned"]]
 
 
-# In[ ]:
+# In[12]:
 
 
 from wordcloud import WordCloud
@@ -210,7 +205,7 @@ plt.title("Wordcloud des données brutes")
 plt.show()
 
 
-# In[ ]:
+# In[13]:
 
 
 all_descr_clean_stem = " ".join(train_df.description_cleaned.values)
@@ -224,16 +219,9 @@ plt.show()
 
 
 # # Vectorization
-# 
-# We use TfidfVectorizer to transform words from text to numerical vector data.  
-# 
-# More vectorize are available on scikit-learn -> https://scikit-learn.org/stable/modules/classes.html#module-sklearn.feature_extraction.text
-# 
-# You also may want to have a look at words embedding methods (Word2vec, Glove, etc..)
 
-# **Test de la méthode TfIDF**
 
-# In[26]:
+# In[14]:
 
 
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -241,13 +229,12 @@ transformer = TfidfVectorizer().fit(train_df["description_cleaned"].values)
 print("NB features: %d" %(len(transformer.vocabulary_)))
 X_train = transformer.transform(train_df["description_cleaned"].values)
 X_test = transformer.transform(test_df["description_cleaned"].values)
-X_train
+
 
 
 # # Learning
-#  
 
-# In[ ]:
+# In[15]:
 
 
 from sklearn.svm import LinearSVC
@@ -260,18 +247,18 @@ model.fit(X_train, Y_train)
 
 # # Prediction
 
-# In[31]:
+# In[16]:
 
 
 predictions = model.predict(X_test)
-predictions
+
 
 
 # # File Generation
 
-# In[32]:
+# In[17]:
 
 
 test_df["Category"] = predictions
 baseline_file = test_df[["Id","Category"]]
-baseline_file.to_csv("baseline3.csv", index=False)
+baseline_file.to_csv("resultats.csv", index=False)
