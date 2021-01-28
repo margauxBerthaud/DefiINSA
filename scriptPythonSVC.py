@@ -51,27 +51,7 @@ label_string=pd.merge(train_label,label_metier, on=['Category'])
 
 data_count = label_string["0"].value_counts()
 
-fig = go.Figure()
-fig.add_trace(go.Bar(x=data_count.index,
-                y=data_count.values,
-                marker_color='rgb(55, 83, 109)'
-                ))
 
-fig.update_layout(
-    title='Distribution des description dans les catégories',
-    xaxis_tickfont_size=12,
-    xaxis_tickangle=70,
-    yaxis=dict(
-        title='Nombre de descriptions',
-        titlefont_size=16,
-        tickfont_size=14,
-    ),
-    paper_bgcolor='rgba(0,0,0,0)',
-    barmode='group',
-    bargap=0.15, 
-    bargroupgap=0.1 
-)
-fig.show()
 
 
 
@@ -86,27 +66,6 @@ desc_metier=pd.merge(label_string,train_df, on=['Id'])
 
 vocabulary_size = {metier : len(set(" ".join(desc_metier[desc_metier["0"]==metier]["description"].values).split(" "))) for metier in set(desc_metier["0"].values)}
 
-fig = go.Figure()
-fig.add_trace(go.Bar(x=data_count.index,
-                y=[vocabulary_size[c] for c in data_count.index],
-                marker_color='rgb(55, 83, 109)'
-                ))
-
-fig.update_layout(
-    title='Size of vocabulary per work',
-    xaxis_tickfont_size=12,
-    xaxis_tickangle=70,
-    yaxis=dict(
-        title='Size of vocabulary',
-        titlefont_size=16,
-        tickfont_size=14,
-    ),
-    paper_bgcolor='rgba(0,0,0,0)',
-    barmode='group',
-    bargap=0.15, # gap between bars of adjacent location coordinates.
-    bargroupgap=0.1 # gap between bars of the same location coordinate.
-)
-fig.show()
 
 
 # # Cleaning
@@ -190,7 +149,7 @@ train_df[["description", "description_cleaned"]]
 clean_df_column(test_df, "description", "description_cleaned")
 test_df[["description", "description_cleaned"]]
 
-
+print("cleaning ok")
 # In[12]:
 
 
@@ -218,6 +177,7 @@ plt.title("Wordcloud des données 'propres'")
 plt.show()
 
 
+
 # # Vectorization
 
 
@@ -230,6 +190,7 @@ print("NB features: %d" %(len(transformer.vocabulary_)))
 X_train = transformer.transform(train_df["description_cleaned"].values)
 X_test = transformer.transform(test_df["description_cleaned"].values)
 
+print("TFIDF ok")
 
 
 # # Learning
@@ -243,6 +204,8 @@ Y_train = train_label.Category.values
 model = LinearSVC(penalty='l2',loss='hinge', C=1.0)
 
 model.fit(X_train, Y_train)
+print("training ok")
+
 
 
 # # Prediction
@@ -251,6 +214,7 @@ model.fit(X_train, Y_train)
 
 
 predictions = model.predict(X_test)
+print("testing ok")
 
 
 
