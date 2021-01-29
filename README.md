@@ -2,7 +2,7 @@
  
 ## Resultats
 
-Pour notre solution nous avons chosit d'implémenter une vectorisation TDIDF et une classification Linear Support VectorClassification. Une selection des paramètre par validation croisée à été faite au préalable afin de déterminer les paramètres les plus efficace pour notre solution. 
+Pour notre solution nous avons choisi d'implémenter une vectorisation TDIDF et une classification Linear Support VectorClassification. Une selection des paramètres par validation croisée a été faite au préalable afin de déterminer les paramètres les plus efficaces pour notre solution. 
 
 Paramètres selectionnées :
  - Norme de penalisation : l2
