@@ -87,6 +87,10 @@ class CleanText:
     def __init__(self):
 
         english_stopwords = nltk.corpus.stopwords.words('english')
+         new_words=('interest','interests', 'include','includes', 'including', 'received', 'new', 'work', 'works', 
+                 'working', 'worked', 'current', 'currently')
+        for i in new_words:
+            english_stopwords.append(i)
         self.stopwords = [self.remove_accent(sw) for sw in english_stopwords]
 
         self.stemmer = nltk.stem.SnowballStemmer('english')
